@@ -1,11 +1,10 @@
 const express = require('express');
 const { resolve } = require('path');
+let cors = require('cors');
 
 const app = express();
 const port = 3000;
-let cors = require('cors');
 app.use(cors());
-
 app.use(express.static('static'));
 
 
@@ -215,28 +214,28 @@ let hotel = [
 
 function sort_lth(obj1,obj2){
   return obj1.price-obj2.price;
-}
+};
 
 function sort_htl(obj1,obj2){
   return obj2.price-obj1.price;
-}
+};
 
 function sort_lth_rating(obj1,obj2){
   return obj1.rating-obj2.rating;
-}
+};
 
 function sort_htl_rating(obj1,obj2){
   return obj2.rating-obj1.rating;
-}
+};
 
 
 function sort_lth_review(obj1,obj2){
   return obj1.reviews-obj2.reviews;
-}
+};
 
 function sort_htl_review(obj1,obj2){
   return obj2.reviews-obj1.reviews;
-}
+};
 
 
 app.get('/hotels',(req,res)=>{
@@ -282,7 +281,7 @@ app.get('/hotels/sort/reviews',(req,res)=>{
 
 function get_hotel_with_amenity(each_hotel,amenity){
   return each_hotel.amenity.toLowerCase()===amenity;
-}
+};
 
 app.get('/hotels/filter/amenity',(req,res)=>{
   let amenity = req.query.amenity;
@@ -306,7 +305,7 @@ app.get('/hotels/filter/country',(req,res)=>{
 
 function get_hotel_with_category(each_hotel,category){
   return each_hotel.category.toLowerCase()===category;
-}
+};
 
 
 app.get('/hotels/filter/category',(req,res)=>{
@@ -314,7 +313,7 @@ app.get('/hotels/filter/category',(req,res)=>{
   category = category.toLowerCase();
   let filtered_hotels = hotel.filter((each_hotel)=>get_hotel_with_category(each_hotel,category));
   return res.json({hotels:filtered_hotels});
-})
+});
 
 
 
